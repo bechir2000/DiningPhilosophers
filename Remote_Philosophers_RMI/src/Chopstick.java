@@ -20,16 +20,4 @@ public class Chopstick implements ChopInterf {
 		return this.Free;
 	}
 	
-	public static void main(String[] args) throws RemoteException
-	{
-		if (System.getSecurityManager() == null) 
-			System.setSecurityManager(new RMISecurityManager());
-		
-        Registry registry = LocateRegistry.getRegistry(5200);
-        for (int i=0; i<5; i++) {
-        	Chopstick fork = new Chopstick();
-        	ChopInterf stub = (ChopInterf)UnicastRemoteObject.exportObject(fork,0);
-			registry.rebind("fork" + i, stub);
-        }
-	}
 }
