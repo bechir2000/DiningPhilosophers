@@ -31,24 +31,24 @@ public class ServerThread extends Thread {
 		        	Chopstick right=null;
 		        	if(id ==5) { //get the forks
 		        		for(Chopstick f : forks){
-		                    if(f.getId()==1){
+		                    if(f.id==1){
 		                        right=f;
 		                    }
 		                }
 		        		for(Chopstick f : forks){
-		                    if(f.getId()==id){ // to avoid circular deadlock 
+		                    if(f.id==id){ // to avoid circular deadlock 
 		                        left=f;
 		                    }
 		                }
 		        	} //get the forks
 		        	else {
 		        		for(Chopstick f : forks){
-		                    if(f.getId()==id+1){
+		                    if(f.id==id+1){
 		                        left=f;
 		                    }
 		                }
 		        		for(Chopstick f : forks){
-		                    if(f.getId()==id){
+		                    if(f.id==id){
 		                        right=f;
 		                    }
 		                }
