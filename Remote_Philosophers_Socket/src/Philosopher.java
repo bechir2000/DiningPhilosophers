@@ -40,16 +40,16 @@ public class Philosopher implements Runnable {
 	                	left = (Chopstick) in.readObject();
 	                	doAction(": Picked up left fork");
 	                	right = (Chopstick) in.readObject();
-	                	doAction(": Picked up left fork - Eating");
+	                	doAction(": Picked up right fork - Eating");
 						manger++;
 						doAction(": Finished Eating - Put down right fork");
 						out.writeObject("Finished"); //putting back forks
 	                    out.writeObject(left);
 						doAction(": Put down left fork. Back to thinking");
 	                    out.writeObject(right);
-	                    left=null;
-	                    right=null;
 	                }
+	                left=null;
+                    right=null;
 			}
 			
 			catch (Exception e) {e.printStackTrace();}

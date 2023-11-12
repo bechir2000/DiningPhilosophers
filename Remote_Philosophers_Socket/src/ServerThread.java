@@ -19,15 +19,6 @@ public class ServerThread extends Thread {
 		this.forks = forks;	
 	}
 	
-	private Chopstick sendFork(int id){
-        for(Chopstick f : forks){
-            if(f.getId()==id){
-                return f;
-            }
-        }
-        return null;
-    }
-	
 	public void run() {
 		boolean terminated = false;
 		while(!terminated) {
@@ -36,15 +27,31 @@ public class ServerThread extends Thread {
 		        if (msg.equals("Taking")) // I want to eat
 		        {
 		        	int id = (int) in.readObject();
-		        	Chopstick left;
-		        	Chopstick right;
-		        	if(id ==5) {
-		        		right=sendFork(id);
-			        	left=sendFork(1);
-		        	}
+		        	Chopstick left=null;
+		        	Chopstick right=null;
+		        	if(id ==5) { //get the forks
+		        		for(Chopstick f : forks){
+		                    if(f.getId()==1){
+		                        right=f;
+		                    }
+		                }
+		        		for(Chopstick f : forks){
+		                    if(f.getId()==id){ // to avoid circular deadlock 
+		                        left=f;
+		                    }
+		                }
+		        	} //get the forks
 		        	else {
-			        	left=sendFork(id+1);
-			        	right=sendFork(id);
+		        		for(Chopstick f : forks){
+		                    if(f.getId()==id+1){
+		                        left=f;
+		                    }
+		                }
+		        		for(Chopstick f : forks){
+		                    if(f.getId()==id){
+		                        right=f;
+		                    }
+		                }
 		        	}
 		        	if (forks.contains(left) && forks.contains(right)) {
 		        		out.writeObject("OK");
