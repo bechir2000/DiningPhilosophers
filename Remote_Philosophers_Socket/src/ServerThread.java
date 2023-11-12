@@ -36,9 +36,9 @@ public class ServerThread extends Thread {
 		                    }
 		                }
 		        		for(Chopstick f : forks){
-		                    if(f.id==id){ // to avoid circular deadlock 
-		                        left=f;
-		                    }
+		                    if(f.id==id){ // to avoid circular deadlock, the last philosopher
+		                        left=f;   // will take fork N°id as his left one, as opposed to the
+		                    }             // other philosophers.
 		                }
 		        	} //get the forks
 		        	else {

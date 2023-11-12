@@ -55,7 +55,7 @@ public class Philosopher implements Runnable {
 			catch (Exception e) {e.printStackTrace();}
         }
         try {
-    		System.out.println(Thread.currentThread().getName() + " " + " quits the table");
+    		System.out.println(Thread.currentThread().getName() + " " + "quits the table");
 			out.writeObject("Closed");
 			s.close();
 		} catch (IOException e) {
